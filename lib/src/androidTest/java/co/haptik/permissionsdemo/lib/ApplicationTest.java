@@ -1,4 +1,4 @@
-package co.haptik.permissions.lib;
+package co.haptik.permissionsdemo.lib;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

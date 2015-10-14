@@ -1,8 +1,9 @@
-package co.haptik.permissions.lib;
+package co.haptik.permissions;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.annotation.IntDef;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -15,6 +16,12 @@ import java.util.List;
  */
 public class Permissions {
 
+    @IntDef({PermissionRequest.REQUESTED, PermissionRequest.ALREADY_GRANTED, PermissionRequest.PREVIOUSLY_DENIED})
+    public @interface PermissionRequest{
+        int REQUESTED = 0;
+        int ALREADY_GRANTED = 1;
+        int PREVIOUSLY_DENIED = 2;
+    }
     /**
      * Returns whether or not an app has been granted a particular permission
      *
@@ -66,6 +73,27 @@ public class Permissions {
         }
         else{
             return false;
+        }
+    }
+
+    /**
+     * Requests permission if not previously denied
+     *
+     * @param activity Activity requesting permission
+     * @param permission Permission string
+     * @param requestCode Request code
+     * @return Int value (from Permissions.PermissionRequest) indicating if permission was previously granted, denied, or has now been requested
+     */
+    public static @Permissions.PermissionRequest int requestPermissionIfNotPreviouslyDenied(Activity activity, String permission, int requestCode){
+        if (havePermission(activity, permission)){
+            return PermissionRequest.ALREADY_GRANTED;
+        }
+        else if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)){
+            return PermissionRequest.PREVIOUSLY_DENIED;
+        }
+        else{
+            requestPermission(activity, permission, requestCode);
+            return PermissionRequest.REQUESTED;
         }
     }
 }

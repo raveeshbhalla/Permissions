@@ -1,17 +1,17 @@
-package co.haptik.permissions;
+package co.haptik.permissionsdemo;
 
 import android.Manifest;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import co.haptik.permissions.lib.Permissions;
+import co.haptik.permissions.Permissions;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +32,10 @@ public class MainActivity extends AppCompatActivity {
                 Permissions.requestPermission(MainActivity.this, Manifest.permission.READ_CONTACTS, 1);
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult (int requestCode, String[] permissions, int[] grantResults){
+        Log.d("MainActivity", "Permissions:" + permissions.toString());
     }
 }
