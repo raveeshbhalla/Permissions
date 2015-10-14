@@ -13,5 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
+    <Button
+        android:id="@+id/requestPermission"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:text="Request Permission"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
 </RelativeLayout>
