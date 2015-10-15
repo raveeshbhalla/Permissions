@@ -1,4 +1,4 @@
-package co.haptik.permissions;
+package in.raveesh.permissions;
 
 import android.app.Activity;
 import android.content.Context;

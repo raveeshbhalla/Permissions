@@ -1,4 +1,4 @@
-package co.haptik.permissionsdemo;
+package in.raveesh.permissionsdemo;
 
 import android.Manifest;
 import android.support.v4.app.ActivityCompat;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import co.haptik.permissions.Permissions;
+import in.raveesh.permissions.Permissions;
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 Permissions.requestPermission(MainActivity.this, Manifest.permission.READ_CONTACTS, 1);
             }
         });
+        Log.d("MainActivity", "Code:"+BuildConfig.VERSION_CODE);
     }
 
     @Override
